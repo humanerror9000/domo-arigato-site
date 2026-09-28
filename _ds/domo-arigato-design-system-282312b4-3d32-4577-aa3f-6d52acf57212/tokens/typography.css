@@ -1,0 +1,16 @@
+:root{
+--font-display:'League Spartan',system-ui,sans-serif;
+--font-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+/* sizes: clamp(mobile, fluid, desktop) */
+--type-display-xl:clamp(56px,10vw,144px);--lh-display-xl:.88;/* @kind other */--tr-display-xl:-.03em;/* @kind other */
+--type-display-l:clamp(44px,7vw,96px);--lh-display-l:.9;/* @kind other */--tr-display-l:-.025em;/* @kind other */
+--type-display-m:clamp(32px,4.4vw,56px);--lh-display-m:.95;/* @kind other */--tr-display-m:-.02em;/* @kind other */
+--type-headline:clamp(24px,2.6vw,32px);--lh-headline:1.05;/* @kind other */--tr-headline:-.01em;/* @kind other */
+--type-subhead:clamp(18px,1.6vw,20px);--lh-subhead:1.35;/* @kind other */
+--type-body-l:clamp(17px,1.4vw,19px);--lh-body-l:1.5;/* @kind other */
+--type-body:16px;--lh-body:1.55;/* @kind other */
+--type-caption:13px;--lh-caption:1.45;/* @kind other */
+--type-label:11px;--lh-label:1.2;/* @kind other */--tr-label:.14em;/* @kind other */
+--weight-display:700;/* @kind font */--weight-display-heavy:800;/* @kind font */--weight-body:400;/* @kind font */--weight-body-medium:500;/* @kind font */--weight-label:600;/* @kind font */
+--measure-body:62ch;/* @kind other */--measure-display:14ch;/* @kind other */
+}

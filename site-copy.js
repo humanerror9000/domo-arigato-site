@@ -1,0 +1,39 @@
+window.DA_MEDIA={
+reel:{type:'drive',id:'1AzdjsUdBp3iNIldHK76FNSU-YvH5BGBz'},
+tesseract:'v3pJwU923RM',hypercube:'-2wvM_LeJAI',tod:'C1o2wDDHSAk',here:'XBWSGUxN3VY',cuates:'yd_wUP0pFMA',
+atenea:'1cat1FiW56HMsabUJmrSh2Jq0WC_q7Jtz',heroLoop:'media/cube-loop.mp4',clicktopia:'media/gridlings-marching.mp4',ziaChannel:'https://www.youtube.com/@thisisziaai',
+email:'domoarigato.ai@gmail.com',whatsapp:'https://wa.me/573103055544',phone:'310 305 5544',instagram:''
+};
+window.DA_COPY={
+en:{
+wwd:{eyebrow:'What do we do?',a:{tag:'Production',h:'Creative production.',p:'Bring us an idea or develop one with us. We direct and produce videos, campaigns, animation and music.'},b:{tag:'AI',h:'AI with purpose.',p:'We help you navigate what’s possible with AI and find processes and solutions that make sense for your project.'}},
+nav:{work:'Work',studio:'Studio',contact:'Contact',lang:'ES'},
+hero:{h:['Less noise.','More intention.'],sub:'Films, motion, 3D and original worlds shaped by creative direction, music, and new tools.',reel:'Watch studio reel',explore:'Explore the work',pause:'Pause',play:'Play',replay:'Replay',credit:'ZIA — Tesseract',draft:'Background is the full YouTube upload for now. Replace with a web-ready Tesseract excerpt and poster frame.'},
+work:{label:'Selected work',h:'Selected work',play:'Play',close:'Close',devLabel:'In development',
+tod:{cat:'Original short film · Science fiction',body:'What if you could see your own future? A near-future story about prediction, control, and the choice to live with uncertainty.',link:'Watch the film',credit:'Written and directed by Rick Ortiz.'},
+here:{cat:'Original concept trailer · Speculative fiction',body:'In a future where survival no longer chooses your path, what makes a life worth staying for? A concept trailer following Elena toward a decision between a new horizon and the people and projects she might leave behind.',link:'Watch the trailer',credit:'Concept, direction, and music by Rick Ortiz. Created for the Future Vision XPRIZE.'},
+zia:{cat:'Virtual artist · Music and moving image',body:'A virtual artist taking shape through original music, character, and visual performance. ZIA is an ongoing experiment in what an artist can be beyond a physical stage.',l1:'Watch Tesseract',l2:'Watch Hypercube',l3:'More from ZIA',credit:'Music, lyrics, production, and visual direction by Rick Ortiz / Humn_Error.'},
+cuates:{cat:'Vertical short · Episode 01',body:'Two primates, one bad habit, and a familiar argument about productivity. A compact comedy experiment for the vertical screen.',link:'Watch episode 01'},
+atenea:{cat:'Commissioned institutional film',link:'Watch the film',body:'A clear visual explainer for Atenea, Bogotá’s district agency for postsecondary education, science, and technology. Using a college customer-service scenario, the film shows what an AI agent does and how it works in everyday terms.'},
+click:{cat:'Original animated series · In development',body:'In a world built for everyone to fit in, Windy begins to question the rules. A new animated world about individuality, belonging, and the courage to be different.',link:'First look',cap:'Gridlings marching · Development material',draft:'Confirm this clip is approved to show as development material.'},
+creditDraft:'Credit subject to confirmation.'},
+studio:{label:'Studio',h:'A studio for ideas worth making.',p1:'Domo Arigato is a Bogotá-based creative studio working across film, motion, music, and emerging production tools. We combine human direction with the possibilities of AI to make work with a point of view.',p2:'We also help teams learn these tools and build useful creative workflows around their own needs.'},
+contact:{label:'Contact',h:'Have something in mind?',p:'Tell us what you want to make. We can start with the idea, a brief, or a problem you’re trying to solve.',email:'Email us',wa:'WhatsApp',draft:'Add CONTACT_EMAIL and WHATSAPP_URL.'},
+foot:{a:'Domo Arigato Studio · Bogotá, Colombia',b:'Films · Motion · Music · Original worlds',c:'© Domo Arigato'}
+},
+es:{
+wwd:{eyebrow:'¿Qué hacemos?',a:{tag:'Producción',h:'Producción creativa.',p:'Partimos de tu idea o la desarrollamos contigo. Dirigimos y producimos videos, campañas, animación y música.'},b:{tag:'IA',h:'IA con criterio.',p:'Te ayudamos a navegar las posibilidades de la IA y a encontrar procesos y soluciones que tengan sentido para tu proyecto.'}},
+nav:{work:'Proyectos',studio:'Estudio',contact:'Contacto',lang:'EN'},
+hero:{h:['Menos ruido.','Más intención.'],sub:'Producción audiovisual y animación para marcas, empresas e instituciones.',reel:'Ver reel del estudio',explore:'Ver proyectos',pause:'Pausa',play:'Reproducir',replay:'Repetir',credit:'ZIA — Tesseract',draft:'Por ahora el fondo es el video completo de YouTube. Reemplazar con un fragmento optimizado de Tesseract y su fotograma de portada.'},
+work:{label:'Proyectos seleccionados',h:'Proyectos seleccionados',play:'Reproducir',close:'Cerrar',devLabel:'En desarrollo',
+tod:{cat:'Cortometraje original · Ciencia ficción',body:'¿Y si pudieras ver tu propio futuro? Una historia sobre la predicción, el control y la decisión de vivir con incertidumbre.',link:'Ver cortometraje',credit:'Escrito y dirigido por Rick Ortiz.'},
+here:{cat:'Tráiler conceptual original · Ficción especulativa',body:'En un futuro donde sobrevivir ya no determina el camino, ¿qué hace que valga la pena quedarse? Elena debe elegir entre un nuevo horizonte y las personas y proyectos que podría dejar atrás.',link:'Ver tráiler',credit:'Concepto, dirección y música de Rick Ortiz. Creado para Future Vision XPRIZE.'},
+zia:{cat:'Artista virtual · Música e imagen en movimiento',body:'Una artista virtual que cobra forma a través de música original, personaje y puesta en escena visual. ZIA explora lo que puede ser una artista más allá de un escenario físico.',l1:'Ver Tesseract',l2:'Ver Hypercube',l3:'Más de ZIA',credit:'Música, letras, producción y dirección visual de Rick Ortiz / Humn_Error.'},
+cuates:{cat:'Corto vertical · Episodio 01',body:'Dos primates, un mal hábito y una discusión muy familiar sobre productividad. Un experimento de comedia pensado para la pantalla vertical.',link:'Ver episodio 01'},
+atenea:{cat:'Video institucional por encargo',link:'Ver video',body:'Un video explicativo claro para Atenea, la agencia distrital de Bogotá para la educación posmedia, la ciencia y la tecnología. A partir de un caso de atención al estudiante, muestra qué hace un agente de IA y cómo funciona en términos cotidianos.'},
+click:{cat:'Serie animada original · En desarrollo',body:'En un mundo donde todos deben encajar, Windy empieza a cuestionar las reglas. Una nueva historia animada sobre la individualidad, el sentido de pertenencia y el valor de ser diferente.',link:'Primer vistazo',cap:'Gridlings marchando · Material en desarrollo',draft:'Confirmar que este clip está aprobado para mostrarse como material en desarrollo.'},
+creditDraft:'Crédito por confirmar.'},
+studio:{label:'Estudio',h:'Un estudio para las ideas que vale la pena hacer.',p1:'Domo Arigato es un estudio creativo de Bogotá que trabaja entre el cine, la imagen en movimiento, la música y las nuevas herramientas de producción. Combinamos dirección humana con las posibilidades de la IA para crear piezas con una mirada propia.',p2:'También ayudamos a equipos a aprender estas herramientas y a construir procesos creativos útiles para sus necesidades.'},
+contact:{label:'Contacto',h:'¿Tienes una idea en mente?',p:'Cuéntanos qué quieres crear. Podemos empezar con una idea, un brief o un problema que quieres resolver.',email:'Escríbenos',wa:'WhatsApp',draft:'Agregar CONTACT_EMAIL y WHATSAPP_URL.'},
+foot:{a:'Domo Arigato Studio · Bogotá, Colombia',b:'Cine · Motion · Música · Mundos originales',c:'© Domo Arigato'}
+}};

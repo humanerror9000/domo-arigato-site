@@ -1,0 +1,17 @@
+/* Domo Arigato — working five-colour palette (design.md v0.4). No other hues. */
+:root{
+--da-black:#000000;--da-white:#FFFFFF;--da-gray:#8B8982;--da-cyan:#70E4EF;--da-magenta:#FF01FB;
+--da-gray-line:rgba(139,137,130,.35);--da-gray-line-strong:rgba(139,137,130,.7);
+/* semantic — dark ground (default) */
+--surface-ground:var(--da-black);--surface-inverse:var(--da-white);--surface-support:var(--da-gray);
+--text-1:var(--da-white);--text-2:var(--da-gray);--text-inverse:var(--da-black);--text-on-support:var(--da-black);
+--line-1:var(--da-gray-line);--line-2:var(--da-gray-line-strong);--line-strong:var(--da-white);
+/* signal — the one accent per application. Monochrome expression: signal = white */
+--signal:var(--da-white);--signal-text:var(--da-white);--text-on-signal:var(--da-black);
+--focus-ring:var(--da-white);
+--logo-src:url('../assets/logo/da-logo-white.svg');/* @kind other */
+}
+[data-expression="cyan"]{--signal:var(--da-cyan);--signal-text:var(--da-cyan);--focus-ring:var(--da-cyan)}
+[data-expression="magenta"]{--signal:var(--da-magenta);--signal-text:var(--da-magenta);--focus-ring:var(--da-magenta)}
+/* light space — the counterpart ground. Gray, cyan and magenta fail as text on white: text stays black. */
+[data-ground="light"]{--surface-ground:var(--da-white);--surface-inverse:var(--da-black);--text-1:var(--da-black);--text-2:var(--da-black);--text-inverse:var(--da-white);--line-1:rgba(0,0,0,.18);--line-2:rgba(0,0,0,.45);--line-strong:var(--da-black);--signal-text:var(--da-black);--focus-ring:var(--da-black)}

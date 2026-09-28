@@ -1,0 +1,6 @@
+html{-webkit-font-smoothing:antialiased}
+body{background:var(--surface-ground);color:var(--text-1);font-family:var(--font-body);font-size:var(--type-body);line-height:var(--lh-body)}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+a:hover{color:var(--signal-text)}
+:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+::selection{background:var(--signal);color:var(--text-on-signal)}
