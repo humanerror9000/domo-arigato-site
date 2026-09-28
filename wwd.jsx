@@ -65,10 +65,13 @@ function WhatWeDo({t}){
   };
   React.useEffect(()=>{
     if(rm)return;
-    const io=new IntersectionObserver(([e])=>{if(!e.isIntersecting||(e.intersectionRatio<.6&&e.intersectionRect.height<innerHeight*.6))return;io.disconnect();document.fonts.ready.then(play)},{threshold:[0,.2,.4,.6,.8,1]});
+    let fired=false;const go=()=>{if(fired)return;fired=true;io.disconnect();removeEventListener('scroll',chk);Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,800))]).then(()=>{try{play()}catch(err){console.error(err);finish()}})};
+    const chk=()=>{const b=panel.current&&panel.current.getBoundingClientRect();if(b&&b.top<innerHeight*.45&&b.bottom>innerHeight*.3)go()};
+    const io=new IntersectionObserver(([e])=>{if(e.isIntersecting&&(e.intersectionRatio>=.6||e.intersectionRect.height>=innerHeight*.6))go()},{threshold:[0,.2,.4,.6,.8,1]});
+    addEventListener('scroll',chk,{passive:true});
     io.observe(panel.current);
     window.__wwd={play:()=>{io.disconnect();play()},seek:ms=>anims.current.forEach(a=>{a.pause();a.currentTime=ms}),resume:()=>anims.current.forEach(a=>a.play())};
-    return ()=>io.disconnect();
+    return ()=>{io.disconnect();removeEventListener('scroll',chk)};
   },[]);
   const split=h=>{const [w,...rest]=h.split(' ');return [w,rest.join(' ')]};
   const [aw1,aw2]=split(t.a.h),[bw1,bw2]=split(t.b.h);
