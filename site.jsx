@@ -21,6 +21,11 @@ function Poster({src,fallback,alt,ratio='16 / 9',onClick,href,cta,className=''})
 function Hero({t,onReel}){
   const vid=React.useRef(null);
   const [playing,setPlaying]=React.useState(!reduced);
+  React.useEffect(()=>{const v=vid.current;if(!v)return;v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');v.setAttribute('playsinline','');
+    if(reduced)return;const tryPlay=()=>{const p=v.play();if(p&&p.then)p.then(()=>setPlaying(true)).catch(()=>setPlaying(false))};
+    tryPlay();v.addEventListener('canplay',tryPlay,{once:true});
+    const onTouch=()=>{if(v.paused&&playing!==false)tryPlay()};document.addEventListener('touchstart',onTouch,{once:true,passive:true});
+    return ()=>document.removeEventListener('touchstart',onTouch)},[]);
   const toggle=()=>{const v=vid.current;if(!v)return;if(v.paused){v.play();setPlaying(true)}else{v.pause();setPlaying(false)}};
   return <section className="hero" data-screen-label="Hero">
     <div className="bg-video" aria-hidden="true">

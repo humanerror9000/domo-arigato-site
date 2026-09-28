@@ -17,7 +17,7 @@ function WhatWeDo({t}){
   const [L,setL]=React.useState(wwdLayout);
   const [pre,setPre]=React.useState(!rm);
   const finish=()=>{anims.current.forEach(a=>a.cancel());anims.current=[];setPre(false)};
-  React.useEffect(()=>{let to;const on=()=>{clearTimeout(to);to=setTimeout(()=>{if(anims.current.length)finish();setL(wwdLayout())},120)};
+  React.useEffect(()=>{let to,lw=innerWidth;const on=()=>{if(innerWidth===lw)return;lw=innerWidth;clearTimeout(to);to=setTimeout(()=>{if(anims.current.length)finish();setL(wwdLayout())},120)};
     addEventListener('resize',on);return ()=>removeEventListener('resize',on)},[]);
   React.useEffect(()=>{if(anims.current.length)finish()},[t]);
   const play=()=>{
