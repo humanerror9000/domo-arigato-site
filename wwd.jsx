@@ -36,7 +36,7 @@ function WhatWeDo({t}){
     go(lab.current,[K0(0,{transform:LB}),K0(1300,{transform:LB},WWD_IO),K0(2000,{transform:FIN}),K0(WWD_T,{transform:FIN})]);
     lab.current.querySelectorAll('.lc>span').forEach((c,i)=>go(c,[K0(0,{transform:'translateY(110%)'}),K0(i*45,{transform:'translateY(110%)'},WWD_IN),K0(i*45+500,{transform:'translateY(0%)'}),K0(WWD_T,{transform:'translateY(0%)'})]));
     // act 1
-    const sBig=1.55*W/a1.w,Yb=H/2-a1.h*sBig/2;
+    const sBig=.86*W/a1.w,Yb=H/2-a1.h*sBig/2,Xc=(W-a1.w*sBig)/2;
     const aH=a2.y+a2.h-a1.y,sF=Math.min(innerW/Math.max(a1.w,a2.w),1.9);
     const Yf=Math.max(lb.y+lb.h+32,(H-(aH*sF+24+ap.h))/2),Xf=colX;
     const sA=.4,YA=lb.y+lb.h+16,aBot=YA+aH*sA;
@@ -48,7 +48,7 @@ function WhatWeDo({t}){
     const hideR='inset(0% 100% 0% 0%)',show='inset(0% 0% 0% 0%)',hideL='inset(0% 0% 0% 100%)';
     const A1f=grp(a1,Xf,Yf,sF),A1a=grp(a1,XA(),YA,sA);function XA(){return colX}
     const A2f=grp(a2,Xf,Yf,sF),A2a=grp(a2,colX,YA,sA),A2l=grp(a2,Xf,Yf+H*.75,sF);
-    go(r.a1.current,[K(0,{transform:tf(a1,1.02*W,Yb,sBig)},WWD_OUT),K(900,{transform:tf(a1,.01*W,Yb,sBig)}),K(1150,{transform:tf(a1,-.03*W,Yb,sBig)},WWD_IO),
+    go(r.a1.current,[K(0,{transform:tf(a1,1.02*W,Yb,sBig)},WWD_OUT),K(900,{transform:tf(a1,Xc+.01*W,Yb,sBig)}),K(1150,{transform:tf(a1,Xc,Yb,sBig)},WWD_IO),
       K(1950,{transform:A1f}),K(5200,{transform:A1f},WWD_IO),K(5950,{transform:FIN}),K(WWD_T-WWD_D,{transform:FIN})]);
     go(r.a2.current,[K(0,{transform:A2l}),K(1450,{transform:A2l},WWD_OUT),K(2250,{transform:A2f}),K(5200,{transform:A2f},WWD_IO),K(5950,{transform:FIN}),K(WWD_T-WWD_D,{transform:FIN})]);
     const APf=tf(ap,colX,Yf+aH*sF+24,1);
@@ -64,9 +64,8 @@ function WhatWeDo({t}){
     setPre(false);
   };
   React.useEffect(()=>{
-    window.__dbgLog&&__dbgLog('wwd mount rm='+rm+' layout='+L.layout);
     if(rm)return;
-    let fired=false;const go=()=>{if(fired)return;fired=true;window.__dbgLog&&__dbgLog('wwd trigger fired');io.disconnect();removeEventListener('scroll',chk);Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,800))]).then(()=>{try{play();window.__dbgLog&&__dbgLog('wwd play() ok, anims='+anims.current.length)}catch(err){console.error(err);window.__dbgLog&&__dbgLog('wwd play ERR '+err.message);finish()}})};
+    let fired=false;const go=()=>{if(fired)return;fired=true;io.disconnect();removeEventListener('scroll',chk);Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,800))]).then(()=>{try{play()}catch(err){console.error(err);finish()}})};
     const chk=()=>{const b=panel.current&&panel.current.getBoundingClientRect();if(b&&b.top<innerHeight*.45&&b.bottom>innerHeight*.3)go()};
     const io=new IntersectionObserver(([e])=>{if(e.isIntersecting&&(e.intersectionRatio>=.6||e.intersectionRect.height>=innerHeight*.6))go()},{threshold:[0,.2,.4,.6,.8,1]});
     addEventListener('scroll',chk,{passive:true});
