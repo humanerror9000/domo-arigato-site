@@ -64,8 +64,9 @@ function WhatWeDo({t}){
     setPre(false);
   };
   React.useEffect(()=>{
+    window.__dbgLog&&__dbgLog('wwd mount rm='+rm+' layout='+L.layout);
     if(rm)return;
-    let fired=false;const go=()=>{if(fired)return;fired=true;io.disconnect();removeEventListener('scroll',chk);Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,800))]).then(()=>{try{play()}catch(err){console.error(err);finish()}})};
+    let fired=false;const go=()=>{if(fired)return;fired=true;window.__dbgLog&&__dbgLog('wwd trigger fired');io.disconnect();removeEventListener('scroll',chk);Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,800))]).then(()=>{try{play();window.__dbgLog&&__dbgLog('wwd play() ok, anims='+anims.current.length)}catch(err){console.error(err);window.__dbgLog&&__dbgLog('wwd play ERR '+err.message);finish()}})};
     const chk=()=>{const b=panel.current&&panel.current.getBoundingClientRect();if(b&&b.top<innerHeight*.45&&b.bottom>innerHeight*.3)go()};
     const io=new IntersectionObserver(([e])=>{if(e.isIntersecting&&(e.intersectionRatio>=.6||e.intersectionRect.height>=innerHeight*.6))go()},{threshold:[0,.2,.4,.6,.8,1]});
     addEventListener('scroll',chk,{passive:true});
