@@ -50,56 +50,50 @@ function Hero({t,onReel}){
   </section>;
 }
 
-function Entry({i,title,cat,body,media,links,credit,drafts,draft,flip,compact}){
-  return <article className={'entry grid'+(flip?' flip':'')+(compact?' compact':'')}>
-    <div className="entry-top"><Rule/><div className="entry-idx"><Label tone="default" index={String(i).padStart(2,'0')} style={{fontSize:'var(--type-caption)'}}>{cat}</Label></div></div>
-    {media&&<div className="entry-media">{media}</div>}
-    <div className={'entry-text'+(media?'':' solo')}>
-      <h3 className="title">{title}</h3>
-      {body&&<p className="body">{body}</p>}
-      {links&&<div className="links">{links}</div>}
-      {credit&&<p className="credit">{credit}</p>}
-      <Draft show={drafts}>{draft}</Draft>
+function useYTTitle(id,fixed){const [v,setV]=React.useState(fixed||'');
+  React.useEffect(()=>{if(fixed||!id)return;fetch('https://noembed.com/embed?url='+encodeURIComponent('https://www.youtube.com/watch?v='+id)).then(r=>r.json()).then(j=>{if(j&&j.title)setV(j.title)}).catch(()=>{})},[id]);return v}
+const firstSentence=s=>s?(s.match(/^[\s\S]*?[.?!](?=\s|$)/)||[s])[0]:'';
+
+function LoopPoster({src,alt,cta,onClick}){
+  const v=React.useRef(null);
+  React.useEffect(()=>{const el=v.current;if(!el)return;el.muted=true;el.setAttribute('muted','');if(!reduced){const p=el.play();if(p&&p.catch)p.catch(()=>{})}},[src]);
+  return <button type="button" className="poster" style={{aspectRatio:'16 / 9'}} onClick={onClick} aria-label={cta+' — '+alt}>
+    <video ref={v} src={reduced?src+'#t=1':src} autoPlay={!reduced} muted loop playsInline preload={reduced?'metadata':'auto'} tabIndex={-1}></video>
+    <span className="poster-cta">{cta} <span className="arr">→</span></span><span className="poster-mark"></span>
+  </button>;
+}
+
+function Tile({p,t,open}){
+  const go=()=>open(p);
+  const thumb=p.thumb||(p.yt&&ytThumb(p.yt,p.vert?'hqdefault':'maxresdefault'));
+  const media=p.loop?<LoopPoster src={p.file} alt={p.title} cta={t.play} onClick={go}/>
+    :<Poster src={thumb} fallback={p.yt&&ytThumb(p.yt,'hqdefault')} alt={p.title} ratio={p.vert?'9 / 16':'16 / 9'} cta={t.play} onClick={go}/>;
+  const teaser=firstSentence(p.body);
+  return <article className={'tile '+(p.span||'s6')+(p.feat?' feat':'')}>
+    {media}
+    <div className="tile-meta">
+      <div className="tile-hd">{p.cat&&<p className="tile-cat">{p.cat}</p>}<h3 className="tile-t"><button type="button" onClick={go}>{p.title}</button></h3></div>
+      {(teaser||p.dev)&&<div className="tile-side">{teaser&&<p className="body">{teaser}</p>}{p.dev&&<Label boxed tone="default">{t.devLabel}</Label>}</div>}
     </div>
   </article>;
 }
 
-function WLink({onClick,href,children}){
-  return href?<a className="wlink" href={href} target="_blank" rel="noopener">{children} <span className="arr">→</span></a>
-    :<button type="button" className="wlink" onClick={onClick}>{children} <span className="arr">→</span></button>;
-}
-
-function Work({t,drafts,cuates,open}){
-  const yt=(id,title)=>()=>open({type:'yt',id,title});
-  const items=[];let n=0;
-  items.push(<Entry key="tod" i={++n} title="Tomorrow on Demand" {...t.tod}
-    media={<Poster src={ytThumb(M.tod)} fallback={ytThumb(M.tod,'hqdefault')} alt="Tomorrow on Demand" cta={t.play} onClick={yt(M.tod,'Tomorrow on Demand')}/>}
-    links={<WLink onClick={yt(M.tod,'Tomorrow on Demand')}>{t.tod.link}</WLink>}/>);
-  items.push(<Entry key="here" i={++n} flip title="HERE" {...t.here}
-    media={<Poster src={ytThumb(M.here)} fallback={ytThumb(M.here,'hqdefault')} alt="HERE" cta={t.play} onClick={yt(M.here,'HERE')}/>}
-    links={<WLink onClick={yt(M.here,'HERE')}>{t.here.link}</WLink>}/>);
-  items.push(<Entry key="zia" i={++n} title="ZIA" {...t.zia}
-    media={<div className="pair">
-      <figure><Poster src={ytThumb(M.tesseract)} fallback={ytThumb(M.tesseract,'hqdefault')} alt="ZIA — Tesseract" cta={t.play} onClick={yt(M.tesseract,'ZIA — Tesseract')}/><figcaption>Tesseract</figcaption></figure>
-      <figure><Poster src={ytThumb(M.hypercube)} fallback={ytThumb(M.hypercube,'hqdefault')} alt="ZIA — Hypercube" cta={t.play} onClick={yt(M.hypercube,'ZIA — Hypercube')}/><figcaption>Hypercube</figcaption></figure>
-    </div>}
-    links={<><WLink onClick={yt(M.tesseract,'ZIA — Tesseract')}>{t.zia.l1}</WLink><WLink onClick={yt(M.hypercube,'ZIA — Hypercube')}>{t.zia.l2}</WLink><WLink href={M.ziaChannel}>{t.zia.l3}</WLink></>}/>);
-  if(cuates)items.push(<Entry key="cuates" i={++n} flip compact title="Cuates Primates" {...t.cuates}
-    media={<Poster className="vert" ratio="9 / 16" src={ytThumb(M.cuates,'hqdefault')} alt="Cuates Primates" cta={t.play} href={'https://youtube.com/shorts/'+M.cuates}/>}
-    links={<WLink href={'https://youtube.com/shorts/'+M.cuates}>{t.cuates.link}</WLink>}/>);
-  items.push(<Entry key="atenea" i={++n} title="Atenea" cat={t.atenea.cat} body={t.atenea.body}
-    media={<Poster src={`https://drive.google.com/thumbnail?id=${M.atenea}&sz=w1600`} alt="Atenea" cta={t.play} onClick={()=>open({type:'drive',id:M.atenea,title:'Atenea'})}/>}
-    links={<WLink onClick={()=>open({type:'drive',id:M.atenea,title:'Atenea'})}>{t.atenea.link}</WLink>}/>);
-  const clickOpen=()=>open({type:'file',src:M.clicktopia,title:'Clicktopia — '+t.click.cap});
-  items.push(<Entry key="click" i={++n} flip title="Clicktopia" {...t.click}
-    media={<figure className="dev-fig"><button type="button" className="poster" style={{aspectRatio:'16 / 9'}} onClick={clickOpen} aria-label={t.click.link+' — Clicktopia'}>
-      <video src={M.clicktopia+'#t=1'} muted playsInline preload="metadata" tabIndex={-1}></video>
-      <span className="poster-cta">{t.play} <span className="arr">→</span></span><span className="poster-mark"></span>
-    </button><figcaption>{t.click.cap}</figcaption></figure>}
-    links={<><WLink onClick={clickOpen}>{t.click.link}</WLink><Label boxed tone="default">{t.devLabel}</Label></>}/>);
+function Work({t,cuates,open}){
+  const new2Title=useYTTitle(M.new2,t.new2.title);
+  const P=[
+    {key:'camino',title:'El Camino',yt:M.elcamino,thumb:M.elcaminoThumb,...t.camino,feat:true,span:'s12'},
+    {key:'tod',title:'Tomorrow on Demand',yt:M.tod,...t.tod},
+    {key:'here',title:'HERE',yt:M.here,...t.here},
+    {key:'zia',title:'ZIA',yt:M.tesseract,...t.zia,span:cuates?'s9':'s12',videos:[{label:'Tesseract',type:'yt',id:M.tesseract},{label:'Hypercube',type:'yt',id:M.hypercube}],links:[{label:t.zia.l3,href:M.ziaChannel}]},
+    cuates&&{key:'cuates',title:'Cuates Primates',yt:M.cuates,vert:true,...t.cuates,span:'s3'},
+    {key:'new2',yt:M.new2,...t.new2,title:new2Title||'—'},
+    {key:'atenea',title:'Atenea',drive:M.atenea,thumb:`https://drive.google.com/thumbnail?id=${M.atenea}&sz=w1600`,...t.atenea},
+    {key:'click',title:'Clicktopia',file:M.clicktopia,loop:true,dev:true,...t.click,feat:true,span:'s12'}
+  ].filter(Boolean);
+  const toVid=p=>p.yt?{type:'yt',id:p.yt,vert:p.vert}:p.drive?{type:'drive',id:p.drive}:{type:'file',src:p.file};
   return <section id="work" className="work" data-screen-label="Selected work">
     <div className="grid sec-head"><h2 className="display-l">{t.h}</h2></div>
-    {items}
+    <div className="grid gal">{P.map(p=><Tile key={p.key} p={p} t={t} open={x=>open({...x,info:true,videos:x.videos||[toVid(x)]})}/>)}</div>
   </section>;
 }
 
@@ -129,13 +123,26 @@ function Contact({t,drafts}){
   </section>;
 }
 
-function Player({item,onClose,closeLabel}){
+function Player({item,onClose,t}){
+  const vids=item.videos||[item];const [ix,setIx]=React.useState(0);const v=vids[ix];
   React.useEffect(()=>{const k=e=>{if(e.key==='Escape')onClose()};document.addEventListener('keydown',k);document.body.style.overflow='hidden';
     return ()=>{document.removeEventListener('keydown',k);document.body.style.overflow=''}},[]);
-  const isFile=item.type==='file';const src=item.type==='yt'?`https://www.youtube.com/embed/${item.id}?autoplay=1&rel=0&playsinline=1`:`https://drive.google.com/file/d/${item.id}/preview`;
-  return <div className="player" role="dialog" aria-modal="true" aria-label={item.title}>
-    <div className="player-bar"><Label tone="default">{item.title}</Label><Button variant="ghost" onClick={onClose} autoFocus>{closeLabel}</Button></div>
-    <div className="player-frame">{isFile?<video src={item.src} controls autoPlay playsInline></video>:<iframe className={item.type==='drive'?'drive':''} src={src} title={item.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen></iframe>}</div>
+  const src=v.type==='yt'?`https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0&playsinline=1`:`https://drive.google.com/file/d/${v.id}/preview`;
+  const name=item.title+(vids.length>1?' — '+v.label:'');
+  return <div className="player" role="dialog" aria-modal="true" aria-label={name}>
+    <div className="player-bar"><Label tone="default">{name}</Label><Button variant="ghost" onClick={onClose} autoFocus>{t.close}</Button></div>
+    <div className={'player-body'+(item.info?' has-info':'')}>
+      <div className={'player-frame'+(v.vert?' vert':'')}>{v.type==='file'?<video key={v.src} src={v.src} controls autoPlay playsInline></video>:<iframe key={src} className={v.type==='drive'?'drive':''} src={src} title={name} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen></iframe>}</div>
+      {item.info&&<div className="player-info grid">
+        <div className="pi-h">{item.cat&&<p className="tile-cat">{item.cat}</p>}<h2 className="display-l">{item.title}</h2></div>
+        <div className="pi-side">
+          {item.body&&<p className="lead">{item.body}</p>}
+          {vids.length>1&&<div className="btns">{vids.map((x,i)=><Button key={x.label} variant={i===ix?'primary':'secondary'} onClick={()=>setIx(i)}>{x.label}</Button>)}</div>}
+          {item.links&&<div className="links">{item.links.map(l=><a key={l.href} className="wlink" href={l.href} target="_blank" rel="noopener">{l.label} <span className="arr">→</span></a>)}</div>}
+          {item.credit&&<p className="credit">{item.credit}</p>}
+        </div>
+      </div>}
+    </div>
   </div>;
 }
 
@@ -161,14 +168,14 @@ function App(){
     <main id="top">
       <Hero t={c.hero} onReel={()=>setOpen({type:'drive',id:M.reel.id,title:'Domo Arigato — Reel 2026'})}/>
       <WhatWeDo t={c.wwd}/>
-      <Work t={c.work} drafts={tw.drafts} cuates={tw.cuates} open={setOpen}/>
+      <Work t={c.work} cuates={tw.cuates} open={setOpen}/>
       <Studio t={c.studio}/>
       <Contact t={c.contact} drafts={tw.drafts}/>
     </main>
     <footer className="foot grid">
       <p>{c.foot.a}</p><p>{c.foot.b}</p><p>2026 {c.foot.c}</p>
     </footer>
-    {open&&<Player item={open} onClose={()=>setOpen(null)} closeLabel={c.work.close}/>}
+    {open&&<Player item={open} onClose={()=>setOpen(null)} t={c.work}/>}
     <TweaksPanel>
       <TweakSection label="Expression"/>
       <TweakRadio label="Signal" value={tw.expression} options={['cyan','magenta','mono']} onChange={v=>setTweak('expression',v)}/>
