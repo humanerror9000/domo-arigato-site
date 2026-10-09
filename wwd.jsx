@@ -96,4 +96,30 @@ function WhatWeDo({t}){
     </div>
   </section>;
 }
-Object.assign(window,{WhatWeDo});
+function WhatWeDoVideo({t,src}){
+  const sec=React.useRef(null),v=React.useRef(null);
+  React.useEffect(()=>{
+    const el=sec.current,vid=v.current;let cleanup=()=>{};
+    const lock=()=>{
+      const nav=document.querySelector('.nav'),nh=nav?nav.getBoundingClientRect().height:0;
+      window.scrollTo({top:el.getBoundingClientRect().top+scrollY-nh-Math.max(0,(innerHeight-nh-el.offsetHeight)/2),behavior:'smooth'});
+      let tries=0,last=0,done=false;
+      const stop=e=>{e.preventDefault();const n=performance.now();if(n-last>300)tries++;last=n;if(tries>=3)release()};
+      const key=e=>{if(['ArrowDown','ArrowUp','PageDown','PageUp',' ','End','Home'].includes(e.key))stop(e)};
+      const opt={passive:false};
+      const release=()=>{if(done)return;done=true;clearTimeout(tm);removeEventListener('wheel',stop,opt);removeEventListener('touchmove',stop,opt);removeEventListener('keydown',key,true)};
+      addEventListener('wheel',stop,opt);addEventListener('touchmove',stop,opt);addEventListener('keydown',key,true);
+      const tm=setTimeout(release,7000);cleanup=release;
+    };
+    const io=new IntersectionObserver(([e])=>{
+      if(e.intersectionRatio>=.6&&vid.paused){vid.currentTime=0;vid.play().catch(()=>{});if(!window.__wwdLocked&&!matchMedia('(prefers-reduced-motion: reduce)').matches){window.__wwdLocked=true;lock()}}
+      else if(!e.isIntersecting){vid.pause()}
+    },{threshold:[0,.6]});io.observe(el);
+    return ()=>{io.disconnect();cleanup()};
+  },[src]);
+  return <section ref={sec} className="wwd wwd-vid" data-screen-label="What we do" aria-label={t.eyebrow}>
+    <p className="vh">{t.anchor} {t.words.join(' ')} {t.lead} {wwdStrip(t.parts.join(' '))}</p>
+    <video ref={v} src={src} muted loop playsInline preload="auto" aria-hidden="true"></video>
+  </section>;
+}
+Object.assign(window,{WhatWeDo,WhatWeDoVideo});
