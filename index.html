@@ -46,19 +46,18 @@ a:hover .arr,button:hover .arr{transform:translateX(4px)}
 @media (min-width:901px){.hero-head,.hero-side{padding-bottom:var(--space-8)}}
 .hero-head{grid-column:1/8;padding:var(--space-6) var(--space-6) var(--space-5) 0;margin-left:calc(var(--grid-margin)*-1);padding-left:var(--grid-margin)}
 .hero-side{grid-column:9/13;display:flex;flex-direction:column;gap:var(--space-5);padding:var(--space-6);margin-right:calc(var(--grid-margin)*-1);padding-right:var(--grid-margin)}
-.wwd{position:relative;height:calc(100svh - 87px);min-height:460px;overflow:clip;--cyc:8s}
-.wwd-side{position:absolute;top:50%;transform:translateY(-50%);display:grid;font-family:var(--font-display);font-weight:500;font-size:var(--wfs);line-height:1;letter-spacing:-.025em;white-space:nowrap;color:var(--text-1)}
-.wwd-side.l{left:calc(max(0px,(100% - var(--grid-max))/2) + var(--grid-margin));justify-items:start}.wwd-side.r{left:var(--cr);justify-items:start}
-.wm{grid-area:1/1;display:inline-block;overflow:hidden;padding:.16em .02em .12em;margin:-.16em 0 -.12em}
-.wm>span{display:inline-block;transform:translateY(110%);animation:wwdw var(--cyc) linear infinite both;animation-delay:calc(var(--i) * var(--cyc) / var(--n))}
-.wwd.off .wm>span{animation-play-state:paused}
-@keyframes wwdw{0%{transform:translateY(110%);animation-timing-function:cubic-bezier(.16,1,.3,1)}7%{transform:translateY(0);animation-timing-function:linear}19%{transform:translateY(0);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}24%,100%{transform:translateY(-110%)}}
+.wwd{position:relative;height:calc(100svh - 87px);min-height:460px;overflow:clip}
+.wwd-c{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100%,1440px);padding:0 var(--grid-margin);display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--text-1);font-family:var(--font-display);text-shadow:0 2px 32px rgba(0,0,0,.45)}
+.wwd-c p{margin:0}
+.lc{display:inline-block;overflow:hidden;vertical-align:top;padding:.16em .01em .12em;margin:-.16em 0 -.12em}.ch{display:inline-block;white-space:pre}.lc.sp{width:.26em}
+.wwd-slot{display:grid;place-items:center;width:100%}
+.wwd-slot>*{grid-area:1/1}
+.ww{font-weight:500;font-size:var(--wfs);line-height:1;letter-spacing:-.04em;white-space:nowrap;padding:.08em 0;display:flex;justify-content:center}
+.l1{column-gap:.22em}.hac,.vid{display:inline-flex}
+.lead{column-gap:.22em}.lw{display:inline-block}
+.wwd-c:not(.live) .wwd-slot>*{visibility:hidden}
+.wwd.rm .wwd-static{display:flex;flex-direction:column;align-items:center;gap:calc(var(--wfs)*.25);font-weight:500;font-size:calc(var(--wfs)*.5);line-height:1.05;letter-spacing:-.025em;max-width:20ch;text-wrap:balance}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;margin:0}
-.wwd[data-layout="stack"]{--gap:min(58vw,40svh)}
-.wwd[data-layout="stack"] .wwd-side{left:0;right:0;justify-items:center}
-.wwd[data-layout="stack"] .wwd-side.l{transform:translateY(calc(-100% - var(--gap)/2))}
-.wwd[data-layout="stack"] .wwd-side.r{transform:translateY(calc(var(--gap)/2))}
-.wwd.rm .wm{grid-area:auto;margin:0;padding:0}.wwd.rm .wm>span{animation:none;transform:none}
 .player-frame iframe.drive{width:100%;height:100%;aspect-ratio:auto}
 @media (max-width:900px){.player-frame{padding:0}.player-frame iframe{width:100%;height:100%;aspect-ratio:auto}.player-frame video{width:100%;max-height:100%}}
 @media (max-width:900px),(orientation:portrait){.bg-video video{object-fit:contain;transform:scale(1.6)}}
@@ -163,10 +162,10 @@ html,body{overflow-x:clip}
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="_ds/domo-arigato-design-system-282312b4-3d32-4577-aa3f-6d52acf57212/_ds_bundle.js"></script>
-<script src="site-copy.js?v=9"></script>
+<script src="site-copy.js?v=13"></script>
 <script>if(window.__resources){const R=window.__resources;if(R.heroLoop)DA_MEDIA.heroLoop=R.heroLoop;if(R.clicktopia)DA_MEDIA.clicktopia=R.clicktopia;if(R.logo)DA_MEDIA.logo=R.logo}</script>
-<script type="text/babel" src="tweaks-panel.jsx?v=9"></script>
-<script type="text/babel" src="wwd.jsx?v=9"></script>
-<script type="text/babel" src="site.jsx?v=9"></script>
+<script type="text/babel" src="tweaks-panel.jsx?v=13"></script>
+<script type="text/babel" src="wwd.jsx?v=13"></script>
+<script type="text/babel" src="site.jsx?v=13"></script>
 </body>
 </html>

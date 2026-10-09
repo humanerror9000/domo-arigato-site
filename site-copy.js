@@ -6,7 +6,7 @@ email:'domoarigato.ai@gmail.com',whatsapp:'https://wa.me/573103055544',phone:'31
 };
 window.DA_COPY={
 en:{
-wwd:{eyebrow:'What do we do?',words:['Video.','Animation.','Music.','3D.'],grad:'Animation',a:{tag:'Production',h:'Creative production.',p:'Bring us an idea or develop one with us. We direct and produce videos, campaigns, animation and music.'},b:{tag:'AI',h:'AI with purpose.',p:'We help you navigate what’s possible with AI and find processes and solutions that make sense for your project.'}},
+wwd:{eyebrow:'What do we do?',anchor:'We make',words:['video.','Animation.','Music.','3D.'],lead:'So your idea',parts:['is *seen*,','*heard*','and *understood*.'],a:{tag:'Production',h:'Creative production.',p:'Bring us an idea or develop one with us. We direct and produce videos, campaigns, animation and music.'},b:{tag:'AI',h:'AI with purpose.',p:'We help you navigate what’s possible with AI and find processes and solutions that make sense for your project.'}},
 nav:{work:'Work',studio:'Studio',contact:'Contact',lang:'ES'},
 hero:{h:['Less noise.','More intention.'],sub:'Films, motion, 3D and original worlds shaped by creative direction, music, and new tools.',reel:'Watch studio reel',explore:'Explore the work',pause:'Pause',play:'Play',replay:'Replay',credit:'ZIA — Tesseract',draft:'Background is the full YouTube upload for now. Replace with a web-ready Tesseract excerpt and poster frame.'},
 work:{label:'Selected work',h:'Selected work',play:'Play',close:'Close',devLabel:'In development',
@@ -24,7 +24,7 @@ contact:{label:'Contact',h:'Have something in mind?',p:'Tell us what you want to
 foot:{a:'Domo Arigato Studio · Bogotá, Colombia',b:'Films · Motion · Music · Original worlds',c:'© Domo Arigato'}
 },
 es:{
-wwd:{eyebrow:'¿Qué hacemos?',words:['Video.','Animación.','Música.','3D.'],grad:'Animación',a:{tag:'Producción',h:'Producción creativa.',p:'Partimos de tu idea o la desarrollamos contigo. Dirigimos y producimos videos, campañas, animación y música.'},b:{tag:'IA',h:'IA con criterio.',p:'Te ayudamos a navegar las posibilidades de la IA y a encontrar procesos y soluciones que tengan sentido para tu proyecto.'}},
+wwd:{eyebrow:'¿Qué hacemos?',anchor:'Hacemos',words:['video.','Animación.','Música.','3D.'],lead:'Para que tu idea',parts:['se *vea*,','se *escuche*','y se *entienda*.'],a:{tag:'Producción',h:'Producción creativa.',p:'Partimos de tu idea o la desarrollamos contigo. Dirigimos y producimos videos, campañas, animación y música.'},b:{tag:'IA',h:'IA con criterio.',p:'Te ayudamos a navegar las posibilidades de la IA y a encontrar procesos y soluciones que tengan sentido para tu proyecto.'}},
 nav:{work:'Proyectos',studio:'Estudio',contact:'Contacto',lang:'EN'},
 hero:{h:['Menos ruido.','Más intención.'],sub:'Un estudio creativo de video, animación, música y 3D para marcas e instituciones. También desarrollamos historias y mundos originales.',reel:'Ver reel del estudio',explore:'Ver proyectos',pause:'Pausa',play:'Reproducir',replay:'Repetir',credit:'ZIA — Tesseract',draft:'Por ahora el fondo es el video completo de YouTube. Reemplazar con un fragmento optimizado de Tesseract y su fotograma de portada.'},
 work:{label:'Proyectos seleccionados',h:'Portafolio',play:'Reproducir',close:'Cerrar',devLabel:'En desarrollo',
