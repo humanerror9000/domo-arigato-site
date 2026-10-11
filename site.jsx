@@ -167,7 +167,7 @@ function App(){
     </header>
     <main id="top">
       <Hero t={c.hero} onReel={()=>setOpen({type:'drive',id:M.reel.id,title:'Domo Arigato — Reel 2026'})}/>
-      {tw.wwdVideo&&lang==='es'?<WhatWeDoVideo t={c.wwd} src="media/wwd-es.mp4?v=2"/>:<WhatWeDo t={c.wwd}/>}
+      {tw.wwdVideo?<WhatWeDoVideo key={lang} t={c.wwd} src={lang==='es'?"media/wwd-es.mp4?v=4":"media/wwd-en.mp4?v=1"}/>:<WhatWeDo t={c.wwd}/>}
       <Work t={c.work} cuates={tw.cuates} open={setOpen}/>
       <Studio t={c.studio}/>
       <Contact t={c.contact} drafts={tw.drafts}/>
@@ -181,7 +181,7 @@ function App(){
       <TweakRadio label="Signal" value={tw.expression} options={['cyan','magenta','mono']} onChange={v=>setTweak('expression',v)}/>
       <TweakSection label="Content"/>
       <TweakToggle label="Show draft notes" value={tw.drafts} onChange={v=>setTweak('drafts',v)}/>
-      <TweakToggle label="Cavalry animation (ES)" value={tw.wwdVideo} onChange={v=>setTweak('wwdVideo',v)}/>
+      <TweakToggle label="Cavalry animation" value={tw.wwdVideo} onChange={v=>setTweak('wwdVideo',v)}/>
       <TweakToggle label="Include Cuates Primates" value={tw.cuates} onChange={v=>setTweak('cuates',v)}/>
     </TweaksPanel>
   </>;
